@@ -11,7 +11,7 @@ watcher
 
 function postProc(filename) {
 
-    const change = filename;
+    	const change = filename;
 	const postproc = change.split('/www/flows.host/upload/end').pop();
 	const end = postproc.replace('/','').split('.');
 
@@ -21,9 +21,7 @@ function postProc(filename) {
 	fs.mkdirSync('/var/www/flows.host/users/' + user + '/' + end[1]);
 
 	fs.rename('/var/www/flows.host/upload/end/' + postproc.replace('/','') , '/var/www/flows.host/users/' + user + '/' + end[1] + '/' + newfile , (end) => {
-
 		console.log("moved")
-
 	});
 
 	const content = `<html> <head><meta property="og:title" content="${user}" /><meta name="twitter:card" content="summary_large_image"><meta property="og:type" content="image" /><meta name="twitter:image" content="https://flows.host/users/${user}/${end[1]}/${newfile}" /><meta property="og:url" content="https://flows.host/users/${user}/" /> </head> <style> body { background-color: #262626; } h1{ border: 5px solid #a200ff; border-radius: 5px; text-align: center; font-family: monospace; margin-left: 40%; margin-right: 40%; } .wfws{ display: block; margin-left: auto; margin-right: auto; width: 50%; } </style> <body> <h1> Uploader: ${user} </h1> <img class="wfws" src="${newfile}"> </body> </html>`;
@@ -35,11 +33,5 @@ function postProc(filename) {
 	});
 
 console.log("user=" + user + "; file =" + newfile + "; end=" + end + "postproc =" + postproc);
-
-}
-
-function createSite(info) {
-
-
 
 }
