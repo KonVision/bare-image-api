@@ -3,9 +3,9 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
     header("Content-Type: text/text");
-    $key = "Yanok2002002!";
-    $uploadhost = "https://flows.host/users/";
-    $redirect = "https://youtube.com";
+    $key = "UPLOADSECRET";
+    $uploadhost = "UPLOADHOSTDOMAIN";
+    $redirect = "REDIRECTDOMAIN";
     if ($_SERVER["REQUEST_URI"] == "/robot.txt") { die("User-agent: *\nDisallow: /"); }
     if (isset($_POST['k'])) {
         if ($_POST['k'] == $key) {
