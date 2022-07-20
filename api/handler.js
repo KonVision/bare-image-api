@@ -1,21 +1,22 @@
-var chokidar = require('chokidar');
+/* Importing packages */
+const chokidar = require('chokidar');
+const fs = require('fs');
 
-var fs = require('fs');
 
-
-var watcher = chokidar.watch('/var/www/flows.host/upload/end/', {ignored: /^\./, persistent: true});
+/* Call watcher */
+let watcher = chokidar.watch('/var/www/flows.host/upload/end/', {ignored: /^\./, persistent: true});
 
 watcher
   .on('add', function(path) {console.log('File', path, 'has been added'); postProc(path);})
 
 function postProc(filename) {
 
-        var change = filename;
-	var postproc = change.split('/www/flows.host/upload/end').pop();
-	var end = postproc.replace('/','').split('.');
+    const change = filename;
+	const postproc = change.split('/www/flows.host/upload/end').pop();
+	const end = postproc.replace('/','').split('.');
 
-	var user = end[0];
-	var newfile = end[1] + '.' + end[2];
+	let user = end[0];
+	let newfile = end[1] + '.' + end[2];
 
 	fs.mkdirSync('/var/www/flows.host/users/' + user + '/' + end[1]);
 
