@@ -24,7 +24,7 @@ function postProc(filename) {
 	console.log("moved")
     });
 
-    const content = `<html> <head><meta property="og:title" content="${user}" /><meta name="twitter:card" content="summary_large_image"><meta property="og:type" content="image" /><meta name="twitter:image" content="https://flows.host/users/${user}/${end[1]}/${newfile}" /><meta property="og:url" content="https://flows.host/users/${user}/" /> </head> <style> body { background-color: #262626; } h1{ border: 5px solid #a200ff; border-radius: 5px; text-align: center; font-family: monospace; margin-left: 40%; margin-right: 40%; } .wfws{ display: block; margin-left: auto; margin-right: auto; width: 50%; } </style> <body> <h1> Uploader: ${user} </h1> <img class="wfws" src="${newfile}"> </body> </html>`;
+    const content = `<html> <head> <meta property="og:title" content="${user}" /> <meta name="twitter:card" content="summary_large_image"> <meta property="og:type" content="image" /> <meta name="twitter:image" content="https://flows.host/users/${user}/${end[1]}/${newfile}" /> <meta property="og:url" content="https://flows.host/users/${user}/" /> <script src="https://cdn.tailwindcss.com"></script> </head> <style> body { height: 75vh; background: #1f2329; color: #ffffff; } @media screen and (min-height: 700px) { .div { margin-top: 12.5%;} } @media screen and (max-height: 701px) { .div { margin: 10px; } } img { width: 50%; } </style> <body> <div class="div"> <img class="mx-auto p-4 md:p-0" src="${newfile}"> <h1 class="text-xl md:text-2xl font-bold text-center p-1"> Uploader: ${user} </h1> </div> </body> </html>`;
 
     fs.writeFile('/var/www/flows.host/users/' + user + '/' + end[1] + '/' + end[1] + '.html', content, err => {
         if (err) {
